@@ -1,52 +1,231 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/tieyoung-e964a.appspot.com/o/apple%20virtual%20platform%2FQuiz%20bg.jpg?alt=media&token=c6991782-7946-41df-b488-449cb7260f02");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
+    position: relative; /* Ensures that positioned elements remain inside the body */
 }
+
+/* Position question number at top left */
+#question-number-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(231, 175, 71, 0.527);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Position timer at top center */
+#timer {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(231, 175, 71, 0.527);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .container {
-    background-color: white;
+    background-color: rgba(231, 175, 71, 0.527);
     padding: 20px;
-    max-width: 600px;
+    max-width: 75%;
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
 }
+
+#auth {
+    margin-bottom: 20px;
+}
+
+#quiz-content .options li {
+    background-color: rgba(231, 175, 71, 0.527);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Initially hide the timer and question number */
+#timer, #question-number-container {
+    display: none;
+}
+
+#quiz-content .options li:hover {
+    background-color: #f05d5d;
+}
+
+#quiz-content .options li label {
+    width: 100%;
+    display: block;
+}
+
+#quiz-content .options input[type="radio"] {
+    display: none;
+}
+
 .quiz-question {
     margin-bottom: 20px;
 }
+
 .question {
     margin-bottom: 10px;
+    font-size: 1.2rem;
 }
+
 .options {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 0;
 }
-.options li {
+
+.option {
     margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
 }
+
+.option:hover {
+    background-color: #007BFF;
+    color: white;
+    border-color: #0056b3;
+}
+
+.option.selected {
+    background-color: #007BFF;
+    color: white;
+}
+
 button {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 20px;
 }
+
 button:hover {
     background-color: #0056b3;
 }
-#timer {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+
 .message-container {
     margin-top: 20px;
 }
+
+/* Responsive adjustments for small screens */
 @media (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
+
     .container {
+        padding: 10px;
+        width: 100%;
+    }
+
+    #timer {
+        position: relative;
+        left: 0;
+        transform: none;
+        margin-top: 10px;
+    }
+
+    #question-number-container {
+        position: relative;
+        left: 0;
+        margin-top: 10px;
+    }
+
+    .question {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 0.9rem;
         padding: 10px;
     }
 }
+
+/* Responsive adjustments for very small screens (mobile) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .question {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
+
+/* Initially hide the timer, question number, and score */
+#timer, #question-number-container, #score-container {
+    display: none;
+}
+
+/* Position elements in the top */
+#question-number-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#timer {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#score-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
