@@ -42,6 +42,9 @@ button:hover {
     font-weight: bold;
     margin-bottom: 10px;
 }
+.message-container {
+    margin-top: 20px;
+}
 @media (max-width: 768px) {
     .container {
         padding: 10px;
