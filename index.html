@@ -302,7 +302,7 @@
 
         fetch(url, {
             method: 'POST',
-            mode: 'cors', // Ensure CORS is handled
+            mode: 'no-cors', // Ensure CORS is handled
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -330,6 +330,8 @@
         });
     }
 </script>
+
+
 
 </body>
 </html>
