@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/tieyoung-e964a.appspot.com/o/apple%20virtual%20platform%2FQuiz%20bg.jpg?alt=media&token=c6991782-7946-41df-b488-449cb7260f02");
+    background-image: url("../images/Cgi-03.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,7 +11,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    position: relative; /* Ensures that positioned elements remain inside the body */
+    position: relative;
 }
 
 /* Position question number at top left */
@@ -20,10 +20,11 @@ body {
     top: 10px;
     left: 10px;
     background-color: rgba(231, 175, 71, 0.527);
-    padding: 8px 16px;
+    padding: 0px 16px;
     border-radius: 20px;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Ensures it's always visible */
 }
 
 /* Position timer at top center */
@@ -33,10 +34,23 @@ body {
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(231, 175, 71, 0.527);
-    padding: 8px 16px;
+    padding: 0px 16px;
     border-radius: 20px;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+#score-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(231, 175, 71, 0.527);
+    padding: 0px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 
 .container {
@@ -49,10 +63,7 @@ body {
     box-sizing: border-box;
 }
 
-#auth {
-    margin-bottom: 20px;
-}
-
+/* Quiz options styling */
 #quiz-content .options li {
     background-color: rgba(231, 175, 71, 0.527);
     margin: 10px 0;
@@ -62,18 +73,9 @@ body {
     transition: background-color 0.3s;
 }
 
-/* Initially hide the timer and question number */
-#timer, #question-number-container {
+/* Hide elements initially */
+#timer, #question-number-container, #score-container {
     display: none;
-}
-
-#quiz-content .options li:hover {
-    background-color: #f05d5d;
-}
-
-#quiz-content .options li label {
-    width: 100%;
-    display: block;
 }
 
 #quiz-content .options input[type="radio"] {
@@ -86,7 +88,7 @@ body {
 
 .question {
     margin-bottom: 10px;
-    font-size: 1.2rem;
+    font-size: 15px;
 }
 
 .options {
@@ -137,8 +139,65 @@ button:hover {
     margin-top: 20px;
 }
 
-/* Responsive adjustments for small screens */
+/* Responsive adjustments for medium screens (tablets) */
+@media (max-width: 1024px) {
+    body {
+        padding: 0 20px;
+    }
+
+    .container {
+        padding: 15px;
+        max-width: 85%;
+    }
+
+    .question {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 0.95rem;
+    }
+
+    #timer {
+        left: 50%;
+    }
+}
+
+/* Responsive adjustments for small screens (mobile) */
 @media (max-width: 768px) {
+    body {
+        padding: 0 15px;
+        background-image: url("../images/Cgi-06.png");
+    }
+
+    .container {
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    #timer {
+        transform: none;
+        margin-top: 10px;
+    }
+
+    #question-number-container {
+        
+        left: 5px;
+        margin-top: 10px;
+    }
+
+    .question {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+/* Very small screen (mobile) adjustments */
+@media (max-width: 480px) {
     body {
         padding: 0 10px;
     }
@@ -146,86 +205,28 @@ button:hover {
     .container {
         padding: 10px;
         width: 100%;
-    }
-
-    #timer {
-        position: relative;
-        left: 0;
-        transform: none;
-        margin-top: 10px;
-    }
-
-    #question-number-container {
-        position: relative;
-        left: 0;
-        margin-top: 10px;
-    }
-
-    .question {
-        font-size: 1rem;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-}
-
-/* Responsive adjustments for very small screens (mobile) */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-        width: 100%;
         box-shadow: none;
+        text-align: center;
+        font-size: 23px;
+    }
+
+    #question-number-container, #score-container {
+        margin: 10px 0;
+    }
+
+    #timer{
+        left: 30%;
+        top: 15%;
+        transform: none;
     }
 
     .question {
-        font-size: 0.9rem;
+        font-size: 20px;
     }
 
     button {
-        font-size: 0.8rem;
-        padding: 8px;
+        font-size: 0.85rem;
+        padding: 8px 10px;
     }
-}
-
-/* Initially hide the timer, question number, and score */
-#timer, #question-number-container, #score-container {
-    display: none;
-}
-
-/* Position elements in the top */
-#question-number-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-#timer {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-#score-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
